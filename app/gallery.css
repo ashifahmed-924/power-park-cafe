@@ -1,0 +1,113 @@
+/* --- GALLERY --- */
+.glSection {
+  --gl-cream: #D8EDE8;
+  position: relative; overflow: hidden; color: #fff; background: #05060a;
+  padding: clamp(64px, 7vw, 110px) 0;
+  min-height: min(100vh, 860px); display: flex; align-items: center;
+}
+.glInner {
+  position: relative; z-index: 2; width: 100%; max-width: var(--fb-max, 1680px); margin: 0 auto; padding: 0 var(--fb-pad, 40px);
+  display: grid; grid-template-columns: minmax(0, .78fr) minmax(0, 1.3fr); gap: clamp(24px, 3vw, 56px); align-items: center;
+}
+
+/* decor */
+.glBlob { position: absolute; z-index: 0; fill: var(--gl-cream); pointer-events: none; }
+.glBlobTop { top: 0; right: 0; width: clamp(150px, 18vw, 302px); height: clamp(75px, 9vw, 150px); transform-origin: 100% 0; transform: scale(0); transition: transform 1.4s cubic-bezier(.2,.8,.2,1) .1s; }
+.glBlobBottom { bottom: 0; left: 0; width: clamp(240px, 31vw, 525px); height: clamp(105px, 13.6vw, 231px); transform-origin: 0 100%; transform: scale(0); transition: transform 1.4s cubic-bezier(.2,.8,.2,1) .2s; }
+.glSection.isIn .glBlobTop, .glSection.isIn .glBlobBottom { transform: scale(1); }
+.glSection.isIn .glBlobTop { animation: glDrift 11s 1.6s ease-in-out infinite alternate; }
+.glSection.isIn .glBlobBottom { animation: glDrift 13s 1.8s ease-in-out infinite alternate-reverse; }
+
+.glDoodle { position: absolute; z-index: 1; right: clamp(-30px, 1vw, 20px); bottom: clamp(-60px, -2vw, -10px); width: clamp(150px, 20vw, 330px); pointer-events: none; opacity: .5; }
+.glDoodle path { stroke: rgba(255,255,255,.55); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.glSection.isIn .glDraw path { animation: glStroke 2.2s var(--d, 0s) ease forwards; }
+.glFloat { transform-origin: 50% 50%; }
+.glSection.isIn .glFloat { animation: glBob 9s 2s ease-in-out infinite alternate; }
+
+/* reveal helpers */
+.glSection .rv { opacity: 0; translate: 0 26px; transition: opacity .9s var(--d, 0s) cubic-bezier(.2,.8,.2,1), translate .9s var(--d, 0s) cubic-bezier(.2,.8,.2,1); }
+.glSection.isIn .rv { opacity: 1; translate: 0 0; }
+
+/* copy */
+.glCopy { min-width: 0; }
+.glEyebrow { display: flex; align-items: center; gap: 22px; font: 500 13px/1 var(--font-body); letter-spacing: .38em; margin-bottom: clamp(28px, 3.4vw, 52px); }
+.glEyebrow i { display: block; height: 1px; width: 0; background: #fff; transition: width 1.1s .5s cubic-bezier(.2,.8,.2,1); }
+.glSection.isIn .glEyebrow i { width: 76px; }
+
+.glSection h2 { margin: 0; font: 800 clamp(2.6rem, 4.7vw, 5.4rem)/1.02 var(--font-display); letter-spacing: -.045em; color: #fff; }
+.glLine { display: block; overflow: hidden; padding: 0 .1em .2em 0; margin-bottom: -.14em; }
+.glLine > span, .glLine > em { display: inline-block; transform: translateY(112%); }
+.glSection.isIn .glLine > span, .glSection.isIn .glLine > em { animation: glRise 1s var(--d) cubic-bezier(.2,.8,.2,1) both; }
+.glLine em { font-style: italic; font-weight: 700; padding-right: .12em; background: linear-gradient(100deg, #cfc7c2 0%, #fff 45%, #cfc7c2 100%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.glSection.isIn .glLine em { animation: glRise 1s var(--d) cubic-bezier(.2,.8,.2,1) both, glShine 6s 1.4s linear infinite; }
+
+.glLead { margin: clamp(22px, 2.4vw, 34px) 0 clamp(26px, 3vw, 42px); max-width: 430px; font: 400 clamp(15px, 1.15vw, 18px)/1.65 var(--font-body); color: #e8e4e0; }
+
+.glBtn { display: inline-flex; align-items: center; gap: 18px; padding: 20px 40px 20px 42px; border-radius: 14px; background: #fff; color: #05060a; font: 600 17px/1 var(--font-body); transition: background .3s, gap .3s, box-shadow .3s, opacity .9s var(--d, 0s), translate .9s var(--d, 0s); box-shadow: 0 0 0 0 rgba(255,255,255,.35); }
+.glSection.isIn .glBtn { animation: glPulse 3.2s 2s ease-out infinite; }
+.glBtn svg { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.glBtn:hover { background: #ece7df; gap: 24px; animation: none; }
+.glBtn:hover svg { transform: translateX(4px); }
+
+.glTags { list-style: none; display: flex; flex-wrap: wrap; align-items: center; margin: clamp(40px, 5vw, 78px) 0 0; padding: 0; font: 500 11px/1 var(--font-body); letter-spacing: .3em; text-transform: uppercase; }
+.glTags li { white-space: pre; }
+.glTags b { font-weight: 400; margin: 0 .5em; opacity: .75; }
+.glTagLine { width: 74px; height: 1px; background: #fff; margin-right: 16px; }
+
+/* carousel */
+.glStage { position: relative; min-width: 0; opacity: 0; translate: 90px 0; transition: opacity 1.1s .25s ease, translate 1.4s .25s cubic-bezier(.2,.8,.2,1); }
+.glSection.isIn .glStage { opacity: 1; translate: 0 0; }
+.glCarousel { perspective-origin: 42% 50%; }
+.glCarousel .depth-carousel__stage { translate: -9% 0; }
+.glCarousel .depth-carousel__card { border: 1px solid rgba(255,255,255,.4); box-shadow: 0 40px 80px -24px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.04); }
+.glCarousel .depth-carousel__arrow { width: 56px; height: 56px; background: rgba(60,62,66,.85); border-color: transparent; transition: background .25s, transform .25s; }
+.glCarousel .depth-carousel__arrow:hover { background: rgba(110,112,118,.95); transform: translateY(-50%) scale(1.08); }
+.glCarousel .depth-carousel__arrow--prev { left: 2%; }
+.glCarousel .depth-carousel__arrow--next { right: 0; }
+.glCarousel .depth-carousel__dots { left: 42%; bottom: 0; gap: 14px; padding: 0; background: none; backdrop-filter: none; }
+.glCarousel .depth-carousel__dot { width: 15px; height: 15px; background: rgba(255,255,255,.28); transition: background .3s, transform .3s; }
+.glCarousel .depth-carousel__dot.is-active { width: 15px; background: #fff; transform: scale(1.1); }
+
+@keyframes glRise { from { transform: translateY(112%); } to { transform: translateY(0); } }
+@keyframes glShine { to { background-position: -220% 0; } }
+@keyframes glStroke { to { stroke-dashoffset: 0; } }
+@keyframes glBob { from { transform: translateY(0) rotate(0); } to { transform: translateY(-10px) rotate(2.5deg); } }
+@keyframes glDrift { from { transform: scale(1) translate(0,0); } to { transform: scale(1.06) translate(-6px, 6px); } }
+@keyframes glPulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.35); } 70%, 100% { box-shadow: 0 0 0 18px rgba(255,255,255,0); } }
+
+/* tablet */
+@media (max-width: 1024px) {
+  .glSection { min-height: 0; }
+  .glInner { grid-template-columns: 1fr; gap: 20px; }
+  .glLead { max-width: 560px; }
+  .glTags { margin-top: 40px; }
+  .glStage { translate: 0 60px; }
+  .glCarousel .depth-carousel__stage { translate: -7% 0; }
+  .glCarousel .depth-carousel__dots { bottom: 4px; }
+}
+/* mobile */
+@media (max-width: 640px) {
+  .glSection { padding: 70px 0 90px; }
+  .glEyebrow { font-size: 11px; gap: 14px; }
+  .glSection.isIn .glEyebrow i { width: 52px; }
+  .glBtn { padding: 17px 30px; font-size: 15px; }
+  .glTags { font-size: 10px; letter-spacing: .2em; row-gap: 10px; }
+  .glTagLine { width: 40px; margin-right: 10px; }
+  .glCarousel .depth-carousel__stage { translate: -6% 0; }
+  .glCarousel .depth-carousel__arrow { width: 42px; height: 42px; top: auto; bottom: -6px; transform: none; }
+  .glCarousel .depth-carousel__arrow:hover, .glCarousel .depth-carousel__arrow:active { transform: scale(1.06); }
+  .glCarousel .depth-carousel__arrow--prev { left: 4%; }
+  .glCarousel .depth-carousel__arrow--next { right: 4%; }
+  .glCarousel .depth-carousel__dots { left: 50%; bottom: 8px; gap: 10px; }
+  .glCarousel .depth-carousel__dot { width: 10px; height: 10px; }
+  .glCarousel .depth-carousel__dot.is-active { width: 10px; }
+  .glDoodle { opacity: .3; width: 140px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glSection *, .glSection { animation: none !important; }
+  .glSection .rv, .glStage, .glBlob, .glLine > span, .glLine > em { transition: none !important; opacity: 1; translate: 0 0; transform: none; }
+  .glSection .glBlob { transform: scale(1); }
+  .glDoodle path { stroke-dashoffset: 0; }
+  .glEyebrow i { width: 76px; transition: none; }
+}

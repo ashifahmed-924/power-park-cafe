@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Modak&family=Unbounded:wght@500;600;700&display=swap');
+
+:root {
+  --font-logo: 'Modak', system-ui, sans-serif;
+  --font-display: 'Darumadrop One', system-ui, sans-serif;
+  --font-body: 'Familjen Grotesk', system-ui, sans-serif;
+  --font-ui: 'Unbounded', system-ui, sans-serif;
+
+  --cocoa: #8B6C58;
+  --cocoa-deep: #6F5342;
+  --chocolate: #2B1D16;
+  --espresso: #1A110E;
+  --butter: #FFF6A3;
+  --cream: #FDF8E6;
+  --foam: #FFFDF3;
+  --ink: #1A120E;
+  --muted: rgba(253, 248, 230, 0.72);
+  --open: #C8D98A;
+  --line: rgba(255, 246, 163, 0.28);
+  --max: 1240px;
+  --pad: clamp(18px, 4vw, 56px);
+  --nav-h: 78px;
+  --radius-pill: 999px;
+  --radius-card: 28px;
+  --radius-soft: 22px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 12px); }
+body {
+  margin: 0;
+  background: var(--cocoa);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+img, video { max-width: 100%; display: block; }
+main { overflow: visible; }
+h1, h2, h3, h4 { margin: 0; font-weight: 400; letter-spacing: -0.02em; }
+p { margin: 0; }
+
+.dlShell {
+  width: min(100% - (var(--pad) * 2), var(--max));
+  margin-inline: auto;
+}
+
+.dlPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 0 22px 0 26px;
+  border-radius: var(--radius-pill);
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+.dlPill:hover { transform: translateY(-2px); }
+.dlPill .dlArrow {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.dlPillSolid {
+  background: var(--butter);
+  color: var(--chocolate);
+}
+.dlPillSolid .dlArrow { background: var(--chocolate); color: var(--butter); }
+.dlPillGhost {
+  background: transparent;
+  color: var(--cream);
+  border: 1.5px solid rgba(253, 248, 230, 0.55);
+}
+.dlPillGhost .dlArrow { background: var(--butter); color: var(--chocolate); }
+
+.dlBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background: var(--open);
+  color: var(--chocolate);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: lowercase;
+}
+.dlBadge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3F5D2A;
+}
+
+.dlEyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background: var(--chocolate);
+  color: var(--butter);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.dlHeadLine {
+  display: block;
+  white-space: nowrap;
+}
+
+.dlLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  text-transform: lowercase;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.dlLink:hover { opacity: 0.85; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .dlHeroMedia video { display: none; }
+  .dlMarqueeTrack { animation: none; }
+  .dlHeroSticker { animation: none; }
+  .dlHeroStage { height: auto; }
+  .dlHero,
+  .dlHero.isPinned {
+    position: relative;
+    height: auto;
+    min-height: 100svh;
+  }
+}
